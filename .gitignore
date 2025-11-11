@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+backend/.venv/
+backend/__pycache__/
+
+# Build outputs
+frontend/build/
+frontend/dist/
+
+# Temp files
+backend/uploads/
+backend/outputs/
+*.mp4
+*.vob
+*.VOB
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
