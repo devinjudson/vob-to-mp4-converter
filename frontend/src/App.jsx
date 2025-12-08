@@ -9,11 +9,24 @@ function App() {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [queue, setQueue] = useState([]);
 
+  const handleAddToQueue = (files, outputPath) => {
+    // Add files to queue immediately with pending status
+    const tempId = Date.now();
+    const queueItems = files.map((file, index) => ({
+      id: `temp-${tempId}-${index}`,
+      fileName: file.name || file,
+      outputLocation: outputPath || 'Default output folder',
+      progress: 0,
+      status: 'pending'
+    }));
+    setQueue(queueItems);
+  };
+
   const handleUploadComplete = (id, files, outputPath) => {
     setJobId(id);
     setSelectedFiles(files);
     
-    // Add files to queue with initial status
+    // Update queue items with actual job ID and uploading status
     const queueItems = files.map((file, index) => ({
       id: `${id}-${index}`,
       fileName: file.name || file,
@@ -57,7 +70,10 @@ function App() {
         <div className="grid-container">
           {/* Upload Section */}
           <div className="upload-section">
-            <FileUpload onUploadComplete={handleUploadComplete} />
+            <FileUpload 
+              onUploadComplete={handleUploadComplete}
+              onAddToQueue={handleAddToQueue}
+            />
           </div>
 
           {/* Queue Section */}

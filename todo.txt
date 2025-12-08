@@ -1,0 +1,7 @@
+UI
+Fix text in queue
+fix loading bar in queue for uploading and converting. upload goes straight to 100% and sits there til done and converting sits at 50% until done
+show time remaining like backend code does
+clear completed doesn't clear the queue
+get rid of conversion status card and add information to queue
+add photo mode

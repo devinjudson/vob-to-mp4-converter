@@ -85,14 +85,14 @@ function Queue({ files, jobId, queue, onRemove, onClearCompleted, onUpdateQueue 
   const getStatusIcon = (status) => {
     switch (status) {
       case "completed":
-        return <CheckCircle2 className="h-5 w-5 text-green-500" />;
+        return <CheckCircle2 className="icon icon-success" />;
       case "converting":
       case "uploading":
-        return <Zap className="h-5 w-5 animate-pulse text-blue-500" />;
+        return <Zap className="icon icon-processing" />;
       case "error":
-        return <AlertCircle className="h-5 w-5 text-red-500" />;
+        return <AlertCircle className="icon icon-error" />;
       default:
-        return <Clock className="h-5 w-5 text-muted-foreground" />;
+        return <Clock className="icon icon-muted" />;
     }
   };
 
@@ -153,7 +153,7 @@ function Queue({ files, jobId, queue, onRemove, onClearCompleted, onUpdateQueue 
                     </div>
                     {onRemove && (
                       <button onClick={() => onRemove(item.id)} className="remove-btn">
-                        <X className="h-4 w-4" />
+                        <X className="icon icon-small" />
                       </button>
                     )}
                   </div>

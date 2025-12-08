@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Upload, Folder } from "lucide-react"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
-function FileUpload({ onUploadComplete, onUploadProgress }) {
+function FileUpload({ onUploadComplete, onUploadProgress, onAddToQueue }) {
   const [files, setFiles] = useState([]);
   const [outputPath, setOutputPath] = useState('');
   const [uploading, setUploading] = useState(false);
@@ -37,6 +38,11 @@ function FileUpload({ onUploadComplete, onUploadProgress }) {
 
   const handleUploadAndConvert = async () => {
     if (files.length === 0) return;
+
+    // Immediately add files to queue before upload starts
+    if (onAddToQueue) {
+      onAddToQueue(files, outputPath);
+    }
 
     setUploading(true);
     setError(null);
@@ -87,17 +93,19 @@ function FileUpload({ onUploadComplete, onUploadProgress }) {
   };
 
   return (
-    <div className="file-upload">
-      <h2>Upload Files</h2>
-      <h3>Select VOB files to convert</h3>
-
-      {/* File Drop Zone */}
-      <div
-        onDragOver={handleDragOver}
-        onDragLeave={handleDragLeave}
-        onDrop={handleDrop}
-        className={`drop-zone ${isDragging ? 'dragging' : ''}`}
-      >
+    <Card className="card file-upload">
+      <CardHeader>
+        <CardTitle>Upload Files</CardTitle>
+        <CardDescription>Select VOB files to convert</CardDescription>
+      </CardHeader>
+      <CardContent className="card-content">
+        {/* File Drop Zone */}
+        <div
+          onDragOver={handleDragOver}
+          onDragLeave={handleDragLeave}
+          onDrop={handleDrop}
+          className={`drop-zone ${isDragging ? 'dragging' : ''}`}
+        >
         <p className="drop-text">Drag and drop VOB files here</p>
         <p className="drop-text-or">or</p>
         <label htmlFor="file-input" className="browse-button">
@@ -119,8 +127,8 @@ function FileUpload({ onUploadComplete, onUploadProgress }) {
       )}
 
       <div className="form-group">
-        <label className="flex items-center gap-2 text-sm font-medium text-foreground">
-            <Folder className="h-4 w-4" />
+        <label className="form-label">
+            <Folder className="icon icon-small" />
             Output Location
           </label>
         <input 
@@ -142,7 +150,8 @@ function FileUpload({ onUploadComplete, onUploadProgress }) {
       >
         {uploading ? 'Uploading & Converting...' : 'Add to Queue'}
       </button>
-    </div>
+      </CardContent>
+    </Card>
   );
 }
 

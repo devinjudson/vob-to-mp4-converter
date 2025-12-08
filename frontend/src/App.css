@@ -34,7 +34,40 @@
 }
 
 .card {
-  padding: 2em;
+  padding: 1.5rem;
+  background: #2d2d2d;
+  color: #f5f5f5;
+  border-radius: 12px;
+  border: 1px solid #3d3d3d;
+}
+
+/* Card sub-elements */
+.card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.card-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.card-description {
+  font-size: 0.9rem;
+  color: #999;
+}
+
+.card-content {
+  padding-top: 0.5rem;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  padding-top: 0.5rem;
 }
 
 .read-the-docs {
@@ -487,46 +520,6 @@ button:disabled {
   margin-top: 8px;
 }
 
-.h-5 {
-  height: 1.25rem;
-  width: 1.25rem;
-}
-
-.w-5 {
-  height: 1.25rem;
-  width: 1.25rem;
-}
-
-.h-4 {
-  height: 1rem;
-  width: 1rem;
-}
-
-.w-4 {
-  height: 1rem;
-  width: 1rem;
-}
-
-.text-green-500 {
-  color: #66bb6a;
-}
-
-.text-blue-500 {
-  color: #61dafb;
-}
-
-.text-red-500 {
-  color: #ef5350;
-}
-
-.text-muted-foreground {
-  color: #888;
-}
-
-.animate-pulse {
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
 @keyframes pulse {
   0%, 100% {
     opacity: 1;
@@ -534,6 +527,31 @@ button:disabled {
   50% {
     opacity: 0.5;
   }
+}
+
+/* Icon utility classes converted to semantic classes */
+.icon {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  vertical-align: middle;
+}
+.icon-small {
+  width: 1rem;
+  height: 1rem;
+}
+.icon-success {
+  color: #66bb6a;
+}
+.icon-processing {
+  color: #61dafb;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+.icon-error {
+  color: #ef5350;
+}
+.icon-muted {
+  color: #888;
 }
 
 .file-status {
